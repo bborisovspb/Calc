@@ -2,39 +2,37 @@ import java.io.IOException;
 import java.util.Scanner;
 
 public class Main {
-    public Main(){
+    public Main() {
     }
 
     public static void main(String[] args) throws IOException {
-    String string = calc();
-        System.out.println(string);
-
-    }
-    public static String calc()        throws IOException {
         Scanner in = new Scanner(System.in);
         System.out.print("Введите математическое выражение ");
         String math = in.nextLine();                                        //Присваеваем вводимой строке имя math
         in.close();
-        int z = math.indexOf(42);                                              //"*"
-        int y = math.indexOf(43);                                              //"+"
-        int x = math.indexOf(45);                                              //"-"
-        int w = math.indexOf(47);                                              //"/"
+        System.out.println(calc(math));
+    }
+
+    public static String calc(String input) throws IOException {
+        int z = input.indexOf(42);                                              //"*"
+        int y = input.indexOf(43);                                              //"+"
+        int x = input.indexOf(45);                                              //"-"
+        int w = input.indexOf(47);                                              //"/"
 
 
-
-        if (w <1 && x <1  && y < 1 && z <1){
+        if (w < 1 && x < 1 && y < 1 && z < 1) {
             System.out.println("//Математический символ неверный или отсутствует.");
             throw new IOException();
         }
-        String[] strings = math.split("[+-/*]"); //Создаем массив строк разделяя по одному из математических символов
+        String[] strings = input.split("[+-/*]"); //Создаем массив строк разделяя по одному из математических символов
         int aL = strings.length;
-        if (aL>2) {
+        if (aL > 2) {
             System.out.println("Выражение не соответсвует требованиям");
-            throw new IOException();}
+            throw new IOException();
+        }
 
 
-
-        if(strings[0].codePointAt(0)>60&&strings[1].codePointAt(0)>60){
+        if (strings[0].codePointAt(0) > 60 && strings[1].codePointAt(0) > 60) {
             try {
                 Roman.valueOf(strings[0]);
                 Roman.valueOf(strings[1]);
@@ -58,9 +56,10 @@ public class Main {
                     "LXXXI", "LXXXII", "LXXXIII", "LXXXIV", "LXXXV", "LXXXVI", "LXXXVII", "LXXXVIII", "LXXXIX", "XC",
                     "XCI", "XCII", "XCIII", "XCIV", "XCV", "XCVI", "XCVII", "XCVIII", "XCIX", "C"
             };
-            if (a > 10 | a <  1 | b > 10 | b < 1) {
+            if (a > 10 | a < 1 | b > 10 | b < 1) {
                 System.out.println("Условия не выполняются, число(числа) выходят за пределы требований задачи.");
-                throw new IOException();}
+                throw new IOException();
+            }
             {
                 if (z >= 1) {
                     int c = a * b;
@@ -84,13 +83,13 @@ public class Main {
                     return roman[c];
                 }
             }
-        }else if(strings[0].codePointAt(0)<60&&strings[1].codePointAt(0)<60) {
+        } else if (strings[0].codePointAt(0) < 60 && strings[1].codePointAt(0) < 60) {
             int[] mathInt = new int[2];                                         //Создаем массив чисел mathInt
             for (int i = 0; i < strings.length; i++) {
-                mathInt[i] = Integer.parseInt(strings[i]);                         //!!!!Разобраться со зверюшкой
+                mathInt[i] = Integer.parseInt(strings[i]);
             }
             int a = mathInt[0];
-            int b = mathInt[1];                             //!!!!Разобраться со зверюшкой
+            int b = mathInt[1];
 
             if (a > 10 | a < 1 | b > 10 | b < 1) {
                 System.out.println("Условия не выполняются, число(числа) выходят за пределы требований задачи.");
@@ -111,9 +110,9 @@ public class Main {
                     return Integer.toString(c);
                 }
             }
-        }else {
+        } else {
             System.out.println("Числа в разных системах исчисления");
-            throw new IOException ();
+            throw new IOException();
         }
     }
 }

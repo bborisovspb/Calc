@@ -34,7 +34,7 @@ public class Main {
                 Roman.valueOf(strings[0]);
                 Roman.valueOf(strings[1]);
             } catch (IllegalArgumentException e) {
-                System.out.println("Буквенные значения не соответсвуют римским цифрам.");
+                System.out.println("Буквенные значения не соответсвуют римским цифрам или их разрешенным значениям.");
             }
 
             Roman one = Roman.valueOf(strings[0]);
